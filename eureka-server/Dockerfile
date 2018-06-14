@@ -7,7 +7,7 @@ MAINTAINER JeffGao "157330205@qq.com"
 WORKDIR /data/eureka/
 
 ## 拷贝jar包到容器指定路径
-ADD /target/eureka-server-0.0.1-SNAPSHOT.jar eureka.jar
+ADD /micro-service/eureka-server/target/eureka-server-0.0.1-SNAPSHOT.jar eureka.jar
 
 
 ## 暴露的端口号
