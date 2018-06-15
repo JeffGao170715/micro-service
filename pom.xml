@@ -20,7 +20,6 @@
 
 	<!-- sub-modules -->
 	<modules>
-		<module>common</module>
 		<module>eureka-server</module>
 		<module>user-service</module>
 		<module>order-service</module>
@@ -74,10 +73,16 @@
 
 	<build>
 		<plugins>
+			<!-- 指定使用maven打包 -->
 			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-compiler-plugin</artifactId>
+			</plugin>
+
+			<!--plugin>
 				<groupId>org.springframework.boot</groupId>
 				<artifactId>spring-boot-maven-plugin</artifactId>
-			</plugin>
+			</plugin-->
 			<!-- 打包配置，docker打包 -->
 			<plugin>
 				<groupId>com.spotify</groupId>
