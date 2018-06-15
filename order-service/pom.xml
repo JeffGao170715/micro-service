@@ -4,12 +4,12 @@
 	<modelVersion>4.0.0</modelVersion>
 
 	<groupId>com.jeff</groupId>
-	<artifactId>user-service</artifactId>
+	<artifactId>order-service</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<packaging>jar</packaging>
 
-	<name>user-service</name>
-	<description>User service module</description>
+	<name>order-service</name>
+	<description>Order Service</description>
 
 	<parent>
 		<groupId>com.jeff</groupId>
@@ -29,7 +29,6 @@
 			<groupId>org.springframework.cloud</groupId>
 			<artifactId>spring-cloud-starter-netflix-eureka-server</artifactId>
 			<version>${netflix.version}</version>
-			<!-- remove tomcat，use undertow -->
 			<exclusions>
 				<exclusion>
 					<groupId>org.springframework.boot</groupId>
@@ -37,13 +36,6 @@
 				</exclusion>
 			</exclusions>
 		</dependency>
-
-		<dependency>
-			<groupId>org.springframework.cloud</groupId>
-			<artifactId>spring-cloud-starter-netflix-ribbon</artifactId>
-			<version>${netflix.version}</version>
-		</dependency>
-
 	</dependencies>
 
 	<build>
