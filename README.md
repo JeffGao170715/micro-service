@@ -8,6 +8,8 @@ Demo project for micro-service
 所有模块不再单独添加该依赖。
 
 ###### 模块说明 ######
+0. common : 系统通用模块
+
 1. eureka-server : 注册中心
 
 2. user-service : 用户相关业务服务模块
