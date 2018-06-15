@@ -4,12 +4,12 @@
 	<modelVersion>4.0.0</modelVersion>
 
 	<groupId>com.jeff</groupId>
-	<artifactId>order-service</artifactId>
+	<artifactId>common-config</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<packaging>jar</packaging>
 
-	<name>order-service</name>
-	<description>Order Service</description>
+	<name>common-config</name>
+	<description>Common configuration module</description>
 
 	<parent>
 		<groupId>com.jeff</groupId>
@@ -26,17 +26,25 @@
 
 	<dependencies>
 		<dependency>
-			<groupId>com.jeff</groupId>
-			<artifactId>common-config</artifactId>
-			<version>0.0.1-SNAPSHOT</version>
+			<groupId>org.springframework.cloud</groupId>
+			<artifactId>spring-cloud-starter-netflix-eureka-server</artifactId>
+			<version>${netflix.version}</version>
+			<exclusions>
+				<!-- 不使用内置的tomcat，使用undertow -->
+				<exclusion>
+					<groupId>org.springframework.boot</groupId>
+					<artifactId>spring-boot-starter-tomcat</artifactId>
+				</exclusion>
+			</exclusions>
 		</dependency>
 	</dependencies>
 
 	<build>
 		<plugins>
+			<!-- 指定使用maven打包 -->
 			<plugin>
-				<groupId>org.springframework.boot</groupId>
-				<artifactId>spring-boot-maven-plugin</artifactId>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-compiler-plugin</artifactId>
 			</plugin>
 		</plugins>
 	</build>

@@ -25,11 +25,11 @@
 	</properties>
 
 	<dependencies>
-		<!--dependency>
+		<dependency>
 			<groupId>com.jeff</groupId>
-			<artifactId>common</artifactId>
+			<artifactId>common-config</artifactId>
 			<version>0.0.1-SNAPSHOT</version>
-		</dependency-->
+		</dependency>
 	</dependencies>
 
 	<build>
