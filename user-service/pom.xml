@@ -15,7 +15,7 @@
 		<groupId>com.jeff</groupId>
 		<artifactId>micro-service</artifactId>
 		<version>0.0.1-SNAPSHOT</version>
-		<relativePath>../pom.xml</relativePath> <!-- lookup parent from repository -->
+		<relativePath>../pom.xml</relativePath>
 	</parent>
 
 	<properties>
@@ -30,6 +30,7 @@
 			<artifactId>common-config</artifactId>
 			<version>0.0.1-SNAPSHOT</version>
 		</dependency>
+
 	</dependencies>
 
 	<build>
