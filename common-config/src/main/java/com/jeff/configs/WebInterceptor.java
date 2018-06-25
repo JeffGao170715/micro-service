@@ -11,7 +11,6 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
  * 网络请求拦截规则
  * Created by Jeff on 2018/6/15.
  */
-@SpringBootConfiguration
 public class WebInterceptor implements WebMvcConfigurer {
     private final static Logger logger = LoggerFactory.getLogger(WebInterceptor.class);
 

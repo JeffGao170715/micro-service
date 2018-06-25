@@ -1,7 +1,10 @@
 package com.jeff.model;
 
+import com.jeff.utils.DateTimeUtil;
+
 import javax.persistence.Id;
 import javax.validation.constraints.NotNull;
+import java.time.LocalDateTime;
 
 /**
  * 用户信息数据模型
@@ -15,6 +18,9 @@ public class User {
     private String name;            // 姓名
     private String certiNo;          // 身份证号
     private String email;           // 邮箱
+
+    private LocalDateTime createTime = DateTimeUtil.now();   // 注册时间
+
 
     public Long getId() {
         return id;
@@ -54,5 +60,13 @@ public class User {
 
     public void setEmail(String email) {
         this.email = email;
+    }
+
+    public LocalDateTime getCreateTime() {
+        return createTime;
+    }
+
+    public void setCreateTime(LocalDateTime createTime) {
+        this.createTime = createTime;
     }
 }
