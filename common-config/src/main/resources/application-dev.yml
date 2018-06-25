@@ -18,6 +18,20 @@ spring:
       max-lifetime: 1800000
       auto-commit: true
       connection-test-query: SELECT 1
+  redis:
+    database: 0
+    host: 116.62.22.161
+    #url: http://jeffgao.com.cn
+    port: 6379
+    timeout: 60000
+    jedis:
+      pool:
+        min-idle: 0
+        max-idle: 10
+        max-active: 20
+
+
+
 
 mapper:
   identity: MYSQL   # 取主键的方式

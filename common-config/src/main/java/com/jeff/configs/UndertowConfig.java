@@ -11,13 +11,16 @@ import org.springframework.context.annotation.Bean;
  * 配置 Undertow
  * Created by Jeff on 2018/6/15.
  */
-@SpringBootConfiguration
-public class UndertowConfig {
-    private final static Logger logger = LoggerFactory.getLogger(UndertowConfig.class);
+public interface UndertowConfig {
+
+    static Logger getLogger() {
+        return LoggerFactory.getLogger(UndertowConfig.class);
+    }
+
 
     @Bean
-    public UndertowReactiveWebServerFactory undertowReactiveWebServerFactory(){
-        logger.info("<====== 加载 Undertow 配置 =======>");
+    default  public UndertowReactiveWebServerFactory undertowReactiveWebServerFactory(){
+        getLogger().info("<====== 加载 Undertow 配置 =======>");
         UndertowReactiveWebServerFactory factory = new UndertowReactiveWebServerFactory();
         int cpuNum = Runtime.getRuntime().availableProcessors();    // 可用的CPU数目
         factory.setIoThreads(cpuNum);

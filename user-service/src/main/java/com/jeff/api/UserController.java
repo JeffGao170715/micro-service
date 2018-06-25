@@ -1,13 +1,14 @@
 package com.jeff.api;
 
-import com.jeff.dao.UserMapper;
 import com.jeff.model.User;
+import com.jeff.service.impl.UserService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.*;
-
-import javax.websocket.server.PathParam;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RestController;
 
 /**
  * 用户服务接口
@@ -20,7 +21,7 @@ public class UserController {
     private final static Logger logger = LoggerFactory.getLogger(UserController.class);
 
     @Autowired
-    private UserMapper userMapper;
+    private UserService userService;
 
     @GetMapping("test.json")
     public String test(){
@@ -30,6 +31,6 @@ public class UserController {
 
     @GetMapping("find.json")
     public User find(@RequestParam Long uid){
-        return userMapper.selectByPrimaryKey(uid);
+        return userService.findById(uid);
     }
 }
