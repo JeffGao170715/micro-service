@@ -35,4 +35,10 @@ public class UserServiceImpl implements UserService{
     public void update(User user) {
         userMapper.updateByPrimaryKey(user);
     }
+
+    @Override
+    @RedisCache(key = "inset_user", read = false, expired = 180)
+    public void add2(User user) {
+        userMapper.insert(user);
+    }
 }

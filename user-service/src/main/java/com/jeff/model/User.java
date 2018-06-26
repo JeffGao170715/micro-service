@@ -1,6 +1,8 @@
 package com.jeff.model;
 
 import com.jeff.utils.DateTimeUtil;
+import tk.mybatis.mapper.annotation.KeySql;
+import tk.mybatis.mapper.code.IdentityDialect;
 
 import javax.persistence.Id;
 import javax.validation.constraints.NotNull;
@@ -12,6 +14,7 @@ import java.time.LocalDateTime;
  */
 public class User {
     @Id
+    @KeySql(useGeneratedKeys = true)
     private Long id;
     @NotNull
     private String mobile;          // 手机号
@@ -20,6 +23,7 @@ public class User {
     private String email;           // 邮箱
 
     private LocalDateTime createTime = DateTimeUtil.now();   // 注册时间
+    private LocalDateTime lastLoginTime = DateTimeUtil.now();   // 上次登陆时间
 
 
     public Long getId() {
@@ -68,5 +72,13 @@ public class User {
 
     public void setCreateTime(LocalDateTime createTime) {
         this.createTime = createTime;
+    }
+
+    public LocalDateTime getLastLoginTime() {
+        return lastLoginTime;
+    }
+
+    public void setLastLoginTime(LocalDateTime lastLoginTime) {
+        this.lastLoginTime = lastLoginTime;
     }
 }

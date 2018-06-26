@@ -39,31 +39,41 @@ public class RedisCacheAspect {
     @Around("redisServicePoint()")
     public Object WriteReadFromRedis(ProceedingJoinPoint point){
         logger.info("<====== 进入 redisCache 环绕通知 ======>");
+        Object obj = null;
         try {
             // 获取RedisCache注解
             RedisCache redisCache = ((MethodSignature)point.getSignature()).getMethod().getAnnotation(RedisCache.class);
-            if(redisCache != null && redisCache.read()){
-                // 查询操作
-                Object obj = redisTemplate.opsForValue().get(redisCache.key());
-                if(obj == null){
-                    // Redis 中不存在，则从数据库中查找，并保存到 Redis
-                    logger.info("<====== Redis 中不存在该记录，从数据库查找 ======>");
-                    obj = point.proceed();
-                    if(obj != null) {
-                        if(redisCache.expired() > 0) {
-                            redisTemplate.opsForValue().set(redisCache.key(), obj, redisCache.expired(), TimeUnit.SECONDS);
-                        }else {
-                            redisTemplate.opsForValue().set(redisCache.key(), obj);
+            if(redisCache != null){
+                if(redisCache.read()) {
+                    // 查询操作
+                    obj = redisTemplate.opsForValue().get(redisCache.key());
+                    if (obj == null) {
+                        // Redis 中不存在，则从数据库中查找，并保存到 Redis
+                        logger.info("<====== Redis 中不存在该记录，从数据库查找 ======>");
+                        obj = point.proceed();
+                        if (obj != null) {
+                            if (redisCache.expired() > 0) {
+                                redisTemplate.opsForValue().set(redisCache.key(), obj, redisCache.expired(), TimeUnit.SECONDS);
+                            } else {
+                                redisTemplate.opsForValue().set(redisCache.key(), obj);
+                            }
                         }
                     }
+                }else {
+                    // 插入数据库操作
+                    Class<?> type = ((MethodSignature) point.getSignature()).getReturnType();
+                    if(!type.getName().equals("void")){
+                        // 有返回值类型
+                        obj = point.proceed();
+                    }else{
+                        point.proceed();
+                    }
                 }
-
-                return obj;
             }
         }catch (Throwable ex){
             logger.error("<====== RedisCache 执行异常: {} ======>", ex);
         }
 
-        return null;
+        return obj;
     }
 }

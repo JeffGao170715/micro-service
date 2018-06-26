@@ -26,4 +26,6 @@ public interface UserService {
      * @param user
      */
     void update(User user);
+
+    void add2(User user);
 }
