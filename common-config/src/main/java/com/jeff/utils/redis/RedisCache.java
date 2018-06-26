@@ -18,7 +18,8 @@ public @interface RedisCache {
     String key() default "";
 
     /**
-     * 过期时间
+     * 过期时间，默认不过期
+     * 以秒为单位
      * @return
      */
     long expired() default -1;

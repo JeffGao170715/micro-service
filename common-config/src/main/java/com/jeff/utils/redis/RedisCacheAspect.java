@@ -11,6 +11,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.stereotype.Component;
 
+import java.util.concurrent.TimeUnit;
+
 /**
  * Redis 注解的切面类，负责处理使用了ReidsCache注解的方法
  * Created by Jeff on 2018/6/25.
@@ -49,7 +51,7 @@ public class RedisCacheAspect {
                     obj = point.proceed();
                     if(obj != null) {
                         if(redisCache.expired() > 0) {
-                            redisTemplate.opsForValue().set(redisCache.key(), obj, redisCache.expired());
+                            redisTemplate.opsForValue().set(redisCache.key(), obj, redisCache.expired(), TimeUnit.SECONDS);
                         }else {
                             redisTemplate.opsForValue().set(redisCache.key(), obj);
                         }

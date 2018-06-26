@@ -19,7 +19,6 @@ public class JeffServlet extends HandlerInterceptorAdapter {
 
     @Override
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
-        logger.info("<============================>");
         printParams(request);
         return super.preHandle(request, response, handler);
     }
@@ -48,7 +47,7 @@ public class JeffServlet extends HandlerInterceptorAdapter {
             StringBuilder str = new StringBuilder();
             str.append("<======URI: ").append(request.getRequestURI()).append("; params=");
             for (String key : params.keySet()) {
-                str.append(key).append(":").append(params.get(key)[0]).append("; ");
+                str.append(key).append("=").append(params.get(key)[0]).append("; ");
             }
             str.append(" ======>");
             logger.info(str.toString());

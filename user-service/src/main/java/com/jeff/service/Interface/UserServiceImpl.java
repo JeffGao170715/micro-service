@@ -26,7 +26,7 @@ public class UserServiceImpl implements UserService{
     }
 
     @Override
-    @RedisCache(key = "test_user", expired = 30000)
+    @RedisCache(key = "test_user", expired = 30)
     public User findById(Long uid) {
         return userMapper.selectByPrimaryKey(uid);
     }
